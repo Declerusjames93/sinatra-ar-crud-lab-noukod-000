@@ -14,10 +14,14 @@ class ApplicationController < Sinatra::Base
   get '/posts/new' do
     erb :new
   end
-#
+#save new post to the database
  post '/posts' do
   Post.create(params)
   redirect '/posts'
 end
-
+# This allows us to see our posts
+  get '/posts' do
+    @posts = Post.all
+    erb :index
+  end
 end
